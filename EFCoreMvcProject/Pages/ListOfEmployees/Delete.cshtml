@@ -1,0 +1,22 @@
+﻿@page "/employee/delete/{id:min(1)}"
+@model EFCoreMvcProject.Pages.ListOfEmployees.DeleteModel
+@{
+    ViewData["Title"] = "Delete Employee";
+    ViewData["ShowButtons"] = false;
+}
+
+<h2 class="text-primary">
+    Delete confirmation
+</h2>
+<hr />
+<div class="alert alert-danger">
+    <partial name="_DisplayEmployeePartial" model="@Model.Employee" view-data="ViewData" />
+    <h5>
+        Are you sure you want to delete employee - @Model.Employee.Name?
+    </h5>
+    <form method="post">
+        <input hidden="hidden" asp-for="Employee.Id" />
+        <input type="submit" class="btn btn-outline-danger" value="Yes" />
+        <a class="btn btn-outline-secondary" asp-page="/ListOfEmployees/Index">No</a>
+    </form>
+</div>

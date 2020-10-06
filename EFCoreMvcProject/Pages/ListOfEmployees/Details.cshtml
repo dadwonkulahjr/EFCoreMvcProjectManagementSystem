@@ -1,0 +1,63 @@
+﻿@page "/employee/view/{id:int}"
+@model EFCoreMvcProject.Pages.ListOfEmployees.DetailsModel
+@{
+    ViewData["Title"] = "Employee Details";
+    string phonePath = "~/images/" + (Model.Employee.Photo ?? "jjc.jpg");
+}
+
+<style>
+    .btn {
+        width: 75px;
+    }
+</style>
+<h2 class="text-primary">
+    Employee details
+</h2>
+<hr />
+<div class="row justify-content-center">
+    @if (Model.Message != null)
+    {
+        <div class="col-sm-8">
+            <div class="alert alert-primary">
+                @Model.Message
+            </div>
+        </div>
+    }
+    <div class="col-md-8">
+       @*@await Component.InvokeAsync("HeadCount", new { department = Model.Employee.Dept })*@
+      <vc:head-count department-name="@Model.Employee.Dept"></vc:head-count>
+    </div>
+    <div class="col-md-8">
+        <div class="card-deck mt-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-primary text-center">@Model.Employee.Name</h2>
+                </div>
+                <div class="card-body text-center text-primary">
+                    <img src="@phonePath" asp-append-version="true" class="img-thumbnail card-img-top" />
+                    <h4 class="card-title">
+                        Employee Id : @Model.Employee.Id
+                    </h4>
+                    <h4 class="card-title">
+                        Email : @Model.Employee.Email
+                    </h4>
+                    <h4 class="card-title">
+                        Department : @Model.Employee.Dept
+                    </h4>
+                    <h4 class="card-title">
+                        Salary : @Model.Employee.Salary.Value.ToString("c")
+                    </h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-secondary mt-2" asp-page="/ListOfEmployees/Index" style="width:auto">Cancel</a>
+                    <a asp-route-id="@Model.Employee.Id" class="btn btn-primary mt-2" asp-page="Edit">Edit</a>
+                    <a class="btn btn-danger text-white mt-2" asp-route-id="@Model.Employee.Id" asp-page="Delete">Delete</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

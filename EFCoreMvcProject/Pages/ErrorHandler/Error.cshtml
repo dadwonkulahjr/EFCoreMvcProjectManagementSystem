@@ -1,0 +1,14 @@
+﻿@page
+@model EFCoreMvcProject.Pages.ErrorHandler.ErrorModel
+@{
+    ViewData["Title"] = "Not Found";
+}
+
+<div class="alert alert-danger">
+    <h1>
+        The resource you are looking for cannot be found at this moment.
+    </h1>
+</div>
+<a asp-page="/ListOfEmployees/Index" class="btn btn-outline-primary">
+    Click the link to view the list of employees
+</a>

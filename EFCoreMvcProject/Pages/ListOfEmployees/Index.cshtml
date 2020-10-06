@@ -1,0 +1,57 @@
+﻿@page "{id:int?}"
+@model EFCoreMvcProject.Pages.ListOfEmployees.IndexModel
+@{
+    ViewData["Title"] = "List Of Employees";
+    ViewData["ShowButtons"] = true;
+}
+<style>
+    .btn {
+        width: 75px;
+    }
+</style>
+<h2 class="text-primary">
+    List Of Employees
+</h2>
+<hr />
+<form method="get">
+    <div class="input-group">
+        <input class="form-control" placeholder="Search..." asp-for="SearchForEmployee" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit">
+                Search
+            </button>
+        </div>
+    </div>
+
+</form>
+@*@await Component.InvokeAsync("HeadCount")*@
+<vc:head-count department-name="@null"></vc:head-count>
+@if (Model.Employees.Any())
+{
+    <div class="card-deck text-primary">
+        @foreach (var emp in Model.Employees)
+        {
+            <partial name="_DisplayEmployeePartial" model="emp" view-data="ViewData" />
+        }
+
+
+    </div>
+
+
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h2>No employee has been added yet.</h2>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create an Employee
+            </h5>
+        </div>
+        <div class="card-footer">
+            <a asp-page="Edit" class="btn btn-outline-info">Create</a>
+        </div>
+    </div>
+}

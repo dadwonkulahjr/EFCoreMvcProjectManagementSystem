@@ -1,0 +1,45 @@
+﻿@page
+@model EFCoreMvcProject.Pages.Account.AdminPortalModel
+@{
+    ViewData["Title"] = "Admin Portal Only";
+}
+
+<h2 class="text-primary">
+    Admin Portal Only!
+</h2>
+<hr />
+
+<form method="post" class="mt-3">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row form-group">
+        <label class="col-form-label col-md-2" asp-for="AdminRegistrationModel.Email"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AdminRegistrationModel.Email" placeholder="Email..." />
+            <span asp-validation-for="AdminRegistrationModel.Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-form-label col-md-2" asp-for="AdminRegistrationModel.Password"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AdminRegistrationModel.Password" placeholder="Password..." />
+            <span asp-validation-for="AdminRegistrationModel.Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-form-label col-md-2" asp-for="AdminRegistrationModel.ConfirmPassword"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AdminRegistrationModel.ConfirmPassword" placeholder="Confirm Password..." />
+            <span asp-validation-for="AdminRegistrationModel.ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-outline-success">Register Admin</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
